@@ -14,11 +14,55 @@ import com.oop.practice.models.student.Student;
  */
 public class OOPExercises {
     
+    /**
+     * Demonstrates the functionality of the Student class
+     */
+    public static void exercise2_Student() {
+        System.out.println("\n=== Student Management System Demo ===");
+        
+        // Create a new student
+        System.out.println("\n1. Creating a new student...");
+        Student student = new Student("John Doe", "S12345", 20, "Freshman");
+        
+        // Enroll in courses
+        System.out.println("\n2. Enrolling in courses...");
+        student.enrollCourse("CS101");
+        student.enrollCourse("MATH201");
+        student.enrollCourse("PHYS101");
+        
+        // Try to enroll in the same course again
+        System.out.println("\n3. Trying to enroll in the same course again...");
+        student.enrollCourse("CS101");
+        
+        // Add grades
+        System.out.println("\n4. Adding grades...");
+        student.addGrade("CS101", 9.2);
+        student.addGrade("MATH201", 8.7);
+        
+        // Try to add grade for non-enrolled course
+        System.out.println("\n5. Trying to add grade for non-enrolled course...");
+        student.addGrade("CHEM101", 7.5);
+        
+        // Drop a course
+        System.out.println("\n6. Dropping a course...");
+        student.dropCourse("PHYS101");
+        
+        // Try to drop non-enrolled course
+        System.out.println("\n7. Trying to drop non-enrolled course...");
+        student.dropCourse("BIOL101");
+        
+        // Generate and print report
+        System.out.println("\n8. Generating student report...");
+        System.out.println("\n" + student.generateReport());
+    }
+    
     public static void main(String[] args) {
         System.out.println("=== OOP Practice Exercises ===\n");
         
         // Run the exercises (uncomment the one you want to test)
-        exercise1_Car();
+        // exercise1_Car();
+        exercise2_Student();
+//        exercise1_Car();
         // exercise2_BankAccount();
         // exercise3_Student();
     }
