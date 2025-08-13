@@ -15,8 +15,8 @@ public class Car {
         this.make = make;
         this.model = model;
         this.year = year;
-        this.currentSpeed = 0;
-        this.isEngineOn = false;
+        currentSpeed = 0;
+        isEngineOn = false;
     }
 
     public void startEngine() {
@@ -55,11 +55,11 @@ public class Car {
     }
 
     public void getCarInfo() {
-        System.out.println("Make : " + this.make);
-        System.out.println("Model : " + this.model);
-        System.out.println("Year : " + this.year);
-        System.out.println("Current Speed : " + this.currentSpeed);
-        System.out.println("Engine State : " + (this.isEngineOn ? "On" : "Off"));
+        System.out.println("Make : " + make);
+        System.out.println("Model : " + model);
+        System.out.println("Year : " + year);
+        System.out.println("Current Speed : " + currentSpeed);
+        System.out.println("Engine State : " + (isEngineOn ? "On" : "Off"));
     }
 
     // Getters
@@ -68,19 +68,19 @@ public class Car {
     }
 
     public String getModel() {
-        return this.model;
+        return model;
     }
 
     public int getYear() {
-        return this.year;
+        return year;
     }
 
     public int getCurrentSpeed() {
-        return this.currentSpeed;
+        return currentSpeed;
     }
 
     public boolean isEngineOn() {
-        return this.isEngineOn;
+        return isEngineOn;
     }
 
 }
