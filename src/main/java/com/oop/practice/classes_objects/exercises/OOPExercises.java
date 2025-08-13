@@ -17,31 +17,73 @@ public class OOPExercises {
     public static void main(String[] args) {
         System.out.println("=== OOP Practice Exercises ===\n");
         
-        // Uncomment the exercise you want to test
-        // exercise1_Car();
+        // Run the exercises (uncomment the one you want to test)
+        exercise1_Car();
         // exercise2_BankAccount();
         // exercise3_Student();
     }
 
     /**
-     * Exercise 1: Basic Car Class
+     * Exercise 1: Car Class Demo
      * 
-     * The Car class is located in: com.oop.practice.models.car.Car
-     * 
-     * Implement the following in the Car class:
-     * - Fields: make, model, year, currentSpeed, isEngineOn
-     * - Methods: startEngine(), stopEngine(), accelerate(), brake(), getCurrentSpeed(), getCarInfo()
-     * - Constructors: No-arg and parameterized
-     * - Input validation
+     * This method demonstrates the functionality of the Car class by simulating
+     * a car rental scenario with different operations.
      */
     private static void exercise1_Car() {
-        System.out.println("\n--- Exercise 1: Car Class ---");
-        // Test your Car class here
-        // Example:
-        // Car myCar = new Car("Toyota", "Camry", 2023);
-        // myCar.startEngine();
-        // myCar.accelerate(50);
-        // System.out.println("Current speed: " + myCar.getCurrentSpeed());
+        System.out.println("\n=== Car Rental System Demo ===");
+        
+        // Create a new car
+        System.out.println("\n1. Creating a new car...");
+        Car myCar = new Car("Toyota", "Camry", 2023);
+        
+        // Display initial car information
+        System.out.println("\n2. Car Information:");
+        myCar.getCarInfo();
+        
+        // Test engine operations
+        System.out.println("\n3. Testing Engine Operations:");
+        System.out.println("   - Starting engine...");
+        myCar.startEngine();
+        
+        // Try to start engine again (should show it's already on)
+        System.out.println("   - Trying to start engine again...");
+        myCar.startEngine();
+        
+        // Test driving operations
+        System.out.println("\n4. Testing Driving Operations:");
+        System.out.println("   - Accelerating to 30 km/h...");
+        myCar.accelerate(30);
+        
+        System.out.println("   - Accelerating by 20 km/h more...");
+        myCar.accelerate(20);
+        
+        System.out.println("   - Current speed: " + myCar.getCurrentSpeed() + " km/h");
+        
+        // Test braking
+        System.out.println("\n5. Testing Braking:");
+        System.out.println("   - Braking by 15 km/h...");
+        myCar.brake(15);
+        System.out.println("   - Current speed: " + myCar.getCurrentSpeed() + " km/h");
+        
+        // Try to stop while moving (should fail)
+        System.out.println("\n6. Trying to stop engine while moving...");
+        myCar.stopEnginge();
+        
+        // Come to a complete stop
+        System.out.println("\n7. Coming to a complete stop...");
+        myCar.brake(35);
+        
+        // Now stop the engine
+        System.out.println("\n8. Stopping the engine...");
+        myCar.stopEnginge();
+        
+        // Try to accelerate with engine off (should fail)
+        System.out.println("\n9. Trying to accelerate with engine off...");
+        myCar.accelerate(20);
+        
+        // Final car status
+        System.out.println("\n10. Final Car Status:");
+        myCar.getCarInfo();
     }
 
     /**
