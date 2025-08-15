@@ -1,5 +1,6 @@
 package com.oop.practice.exercise;
 
+import com.oop.practice.demo.bank.BankDemo;
 import com.oop.practice.demo.car.CarDemo;
 import com.oop.practice.demo.library.LibraryDemo;
 import com.oop.practice.demo.student.StudentDemo;
@@ -66,7 +67,7 @@ public class OOPExercises {
      */
     private static void runBankAccountDemo() {
         System.out.println("\n[1/4] Running Bank Account Demo...");
-//        BankAccountDemo.run();
+        BankDemo.run();
     }
     
     /**
