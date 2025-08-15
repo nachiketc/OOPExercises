@@ -14,13 +14,13 @@ public class Student {
     private String academicStanding;
     private double gpa;
 
-    public Student(String name, String Id, int age, String academicStanding) {
+    public Student(String name, String Id, int age) {
         this.name = name;
         this.Id = Id;
         this.age = age;
         this.courses = new ArrayList<>();
         this.courseGrades = new HashMap<>();
-        this.academicStanding = academicStanding;
+        this.academicStanding = "None";
         this.gpa = 0.0;
     }
     

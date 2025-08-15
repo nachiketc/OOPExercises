@@ -24,7 +24,7 @@ public class Car {
         System.out.println("Engine started.");
     }
 
-    public void stopEnginge() {
+    public void stopEngine() {
         if (currentSpeed>0) {
             System.out.println("Engine can't be stopped because car is moving");
         } else {
@@ -54,12 +54,15 @@ public class Car {
         }
     }
 
-    public void getCarInfo() {
-        System.out.println("Make : " + make);
-        System.out.println("Model : " + model);
-        System.out.println("Year : " + year);
-        System.out.println("Current Speed : " + currentSpeed);
-        System.out.println("Engine State : " + (isEngineOn ? "On" : "Off"));
+    public String getCarInfo() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Car Info : ");
+        stringBuilder.append("\nMake : " + make);
+        stringBuilder.append("\nModel : " + model);
+        stringBuilder.append("\nYear : " + year);
+        stringBuilder.append("\nCurrent Speed : " + currentSpeed);
+        stringBuilder.append("\nEngine State : " + (isEngineOn ? "On" : "Off"));
+        return stringBuilder.toString();
     }
 
     // Getters

@@ -11,7 +11,7 @@ public class StudentTest {
 
     @BeforeEach
     void setUp() {
-        student = new Student("John Doe", "S12345", 20, "Freshman");
+        student = new Student("John Doe", "S12345", 20);
     }
 
     @Test

@@ -32,7 +32,7 @@ public class CarTest {
     void testStopEngineWhenMoving() {
         testCar.startEngine();
         testCar.accelerate(30);
-        testCar.stopEnginge();
+        testCar.stopEngine();
         assertTrue(testCar.isEngineOn(), "Engine should still be on when trying to stop while moving");
     }
 
