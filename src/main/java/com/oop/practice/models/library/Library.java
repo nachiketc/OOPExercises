@@ -1,7 +1,12 @@
 package com.oop.practice.models.library;
 
+import com.oop.practice.pojos.ValidationResponse;
+import com.oop.practice.utils.ValidationUtil;
+
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.oop.practice.constants.LibraryConstants.*;
 
 public class Library {
     private List<Book> books;
@@ -11,10 +16,10 @@ public class Library {
     }
 
     public void addBook(String title, String author, String isbn) {
-        if (title == null || title.trim().isEmpty() || author == null || author.trim().isEmpty() || isbn == null || isbn.trim().isEmpty()) {
-            System.out.println("Error: Title, author, and ISBN cannot be null or empty");
-            return;
-        }
+        // Validate inputs first
+        ValidationUtil.validateStringAndThrow(title, TITLE);
+        ValidationUtil.validateStringAndThrow(author, AUTHOR);
+        ValidationUtil.validateStringAndThrow(isbn, ISBN);
         if (books.stream().anyMatch(book -> book.exists(title,author,isbn))) {
             System.out.println("Book already exists");
         } else {
@@ -86,50 +91,54 @@ public class Library {
     }
 
     public Optional<Book> searchByTitle(String title) {
-        if (title == null || title.trim().isEmpty()) {
-            System.out.println("Error: Title cannot be null or empty");
+        ValidationResponse validationResponse = ValidationUtil.validateString(title,TITLE);
+        if(!validationResponse.isValid()){
+            System.out.println("Error: "+validationResponse.getErrorMessage());
             return Optional.empty();
         }
         if (books.isEmpty()){
             return Optional.empty();
         } else {
-            return Optional.ofNullable(books.stream()
+            return books.stream()
                     .filter(book -> book.getTitle().equals(title))
-                    .toList().get(0));
+                    .findFirst();
         }
     }
 
     public Optional<Book> searchByAuthor(String author) {
-        if (author == null || author.trim().isEmpty()) {
-            System.out.println("Error: Author cannot be null or empty");
+        ValidationResponse validationResponse = ValidationUtil.validateString(author,AUTHOR);
+        if(!validationResponse.isValid()){
+            System.out.println("Error: "+validationResponse.getErrorMessage());
             return Optional.empty();
         }
         if (books.isEmpty()){
             return Optional.empty();
         } else {
-            return Optional.ofNullable(books.stream()
+            return books.stream()
                     .filter(book -> book.getAuthor().equals(author))
-                    .collect(Collectors.toList()).get(0));
+                    .findFirst();
         }
     }
 
     public Optional<Book> searchByISBN(String isbn) {
-        if (isbn == null || isbn.trim().isEmpty()) {
-            System.out.println("Error: ISBN cannot be null or empty");
+        ValidationResponse validationResponse = ValidationUtil.validateString(isbn,ISBN);
+        if(!validationResponse.isValid()){
+            System.out.println("Error: "+validationResponse.getErrorMessage());
             return Optional.empty();
         }
         if (books.isEmpty()){
             return Optional.empty();
         } else {
-            return Optional.ofNullable(books.stream()
+            return books.stream()
                     .filter(book -> book.getIsbn().equals(isbn))
-                    .collect(Collectors.toList()).get(0));
+                    .findFirst();
         }
     }
 
     public List<Book> filterByTitle(String title) {
-        if (title == null || title.trim().isEmpty()) {
-            System.out.println("Error: Title cannot be null or empty");
+        ValidationResponse validationResponse = ValidationUtil.validateString(title,TITLE);
+        if(!validationResponse.isValid()){
+            System.out.println("Error: "+validationResponse.getErrorMessage());
             return Collections.emptyList();
         }
         if (books.isEmpty()){
@@ -142,8 +151,9 @@ public class Library {
     }
 
     public List<Book> filterByAuthor(String author) {
-        if (author == null || author.trim().isEmpty()) {
-            System.out.println("Error: Author cannot be null or empty");
+        ValidationResponse validationResponse = ValidationUtil.validateString(author,AUTHOR);
+        if(!validationResponse.isValid()){
+            System.out.println("Error: "+validationResponse.getErrorMessage());
             return Collections.emptyList();
         }
         if (books.isEmpty()){
@@ -156,8 +166,9 @@ public class Library {
     }
 
     public List<Book> filterByISBN(String isbn) {
-        if (isbn == null || isbn.trim().isEmpty()) {
-            System.out.println("Error: ISBN cannot be null or empty");
+        ValidationResponse validationResponse = ValidationUtil.validateString(isbn,ISBN);
+        if(!validationResponse.isValid()){
+            System.out.println("Error: "+validationResponse.getErrorMessage());
             return Collections.emptyList();
         }
         if (books.isEmpty()){

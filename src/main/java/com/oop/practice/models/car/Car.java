@@ -1,5 +1,10 @@
 package com.oop.practice.models.car;
 
+import com.oop.practice.utils.ValidationUtil;
+
+import static com.oop.practice.constants.CarConstants.MAKE;
+import static com.oop.practice.constants.CarConstants.MODEL;
+
 /**
  * Represents a car with basic functionality like starting/stopping the engine,
  * accelerating, and braking.
@@ -12,6 +17,8 @@ public class Car {
     private boolean isEngineOn;
 
     public Car(String make, String model, int year) {
+        ValidationUtil.validateStringAndThrow(make, MAKE);
+        ValidationUtil.validateStringAndThrow(model, MODEL);
         this.make = make;
         this.model = model;
         this.year = year;

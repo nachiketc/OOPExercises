@@ -1,11 +1,16 @@
 package com.oop.practice.models.library;
 
+import com.oop.practice.utils.ValidationUtil;
+
+import java.net.IDN;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.Date;
 import java.util.Optional;
+
+import static com.oop.practice.constants.LibraryConstants.*;
 
 public class Book {
     private final String title;
@@ -19,15 +24,9 @@ public class Book {
     private final int LATE_FEE_PER_DAY = 10;
 
     public Book(String title, String author, String isbn) {
-        if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("Title cannot be null or empty");
-        }
-        if (author == null || author.trim().isEmpty()) {
-            throw new IllegalArgumentException("Author cannot be null or empty");
-        }
-        if (isbn == null || isbn.trim().isEmpty()) {
-            throw new IllegalArgumentException("ISBN cannot be null or empty");
-        }
+        ValidationUtil.validateStringAndThrow(title,TITLE);
+        ValidationUtil.validateStringAndThrow(author,AUTHOR);
+        ValidationUtil.validateStringAndThrow(isbn, ISBN);
         this.title = title.trim();
         this.author = author.trim();
         this.isbn = isbn.trim();
