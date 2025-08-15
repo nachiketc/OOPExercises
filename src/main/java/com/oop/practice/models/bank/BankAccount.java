@@ -1,10 +1,13 @@
 package com.oop.practice.models.bank;
 
-import com.oop.practice.enums.BankTransactionType;
 import com.oop.practice.pojos.BankTransaction;
+import com.oop.practice.pojos.ValidationResponse;
+import com.oop.practice.utils.ValidationUtil;
 
 import java.math.BigDecimal;
 import java.util.*;
+
+import static com.oop.practice.constants.BankConstants.*;
 
 /**
  * Represents a bank account with basic operations like deposit and withdraw.
@@ -16,13 +19,8 @@ public class BankAccount {
     private final List<BankTransaction> transactionHistory;
 
     public BankAccount(String accountNumber, String holderName) {
-        if (accountNumber == null || accountNumber.trim().isEmpty()) {
-            throw new IllegalArgumentException("Account number cannot be null or empty");
-        }
-        if (holderName == null || holderName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Holder name cannot be null or empty");
-        }
-        
+        ValidationUtil.validateStringAndThrow(accountNumber,ACCOUNT_NUMBER);
+        ValidationUtil.validateStringAndThrow(holderName, HOLDER_NAME);
         this.accountNumber = accountNumber.trim();
         this.holderName = holderName.trim();
         this.balance = BigDecimal.ZERO;
@@ -53,22 +51,27 @@ public class BankAccount {
     }
 
     public void depositAmount(BigDecimal amount) {
-        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
-            System.out.println("Deposit amount must be positive");
+        ValidationResponse validationResponse = ValidationUtil.validatePositiveBD(amount,AMOUNT);
+        if (!validationResponse.isValid()){
+            System.out.println(validationResponse.getErrorMessage());
         } else {
             balance = balance.add(amount);
-            transactionHistory.add(new BankTransaction(BankTransactionType.DEPOSIT, amount, new Date()));
+            transactionHistory.add(BankTransaction.deposit(amount));
         }
+
     }
 
     public void withdrawAmount(BigDecimal amount) {
-        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
-            System.out.println("Withdrawal amount must be positive");
-        } else if (balance.compareTo(amount) < 0) {
+        ValidationResponse amountResponse = ValidationUtil.validatePositiveBD(amount,AMOUNT);
+        ValidationResponse compareResponse = ValidationUtil.validateBDGreaterThanBD(balance,amount);
+        if (!amountResponse.isValid()){
+            System.out.println(amountResponse.getErrorMessage());
+        } else if (!compareResponse.isValid()) {
             System.out.println("Insufficient funds for withdrawal");
         } else {
             balance = balance.subtract(amount);
-            transactionHistory.add(new BankTransaction(BankTransactionType.WITHDRAWAL, amount, new Date()));
+            transactionHistory.add(BankTransaction.withdrawal(amount));
         }
     }
+
 }

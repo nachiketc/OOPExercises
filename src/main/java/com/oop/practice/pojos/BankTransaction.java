@@ -16,6 +16,14 @@ public class BankTransaction {
         this.date = date;
     }
 
+    public static BankTransaction deposit(BigDecimal amount){
+        return new BankTransaction(BankTransactionType.DEPOSIT,amount,new Date());
+    }
+
+    public static BankTransaction withdrawal(BigDecimal amount){
+        return new BankTransaction(BankTransactionType.WITHDRAWAL,amount,new Date());
+    }
+
     public String getTransaction() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(transactionType.getLabel()).append(" : Rs. ").append(amount)
