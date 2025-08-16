@@ -6,4 +6,6 @@ public class LibraryConstants {
     public static final String TITLE = "title";
     public static final String AUTHOR = "author";
     public static final String ISBN = "ISBN";
+    public static final String CHECK_IN_DATE = "Check-In Date";
+    public static final String CHEKCK_OUT_DATE = "Check-Out Date";
 }

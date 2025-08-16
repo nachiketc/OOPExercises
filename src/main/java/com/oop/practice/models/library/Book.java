@@ -70,24 +70,29 @@ public class Book {
     }
 
     public void checkOutBook(Date checkOut, Date checkIn) {
-        if (checkOut == null || checkIn == null) {
-            throw new IllegalArgumentException("Dates cannot be null");
-        }
+        ValidationUtil.validateNonNullAndThrow(checkOut, CHEKCK_OUT_DATE);
+        ValidationUtil.validateNonNullAndThrow(checkIn, CHECK_IN_DATE);
         if (checkIn.before(checkOut)) {
             System.out.println("Check in date cannot be before checkout");
-        } else {
-            this.checkOut = checkOut;
-            this.checkIn = checkIn;
-            this.isAvailable = false;
-            this.lateFees = 0;
-            this.isLate = false;
+            return;
         }
+        this.checkOut = checkOut;
+        this.checkIn = checkIn;
+        this.isAvailable = false;
+        this.lateFees = 0;
+        this.isLate = false;
     }
 
     public void checkLateFees(Date checkIn) {
-        if (checkIn == null) {
-            throw new IllegalArgumentException("Check-in date cannot be null");
+        ValidationUtil.validateNonNullAndThrow(checkIn, CHECK_IN_DATE);
+        
+        // If book is available, no late fees to calculate
+        if (isAvailable) {
+            this.lateFees = 0;
+            this.isLate = false;
+            return;
         }
+        
         if (checkIn.before(checkOut)) {
             System.out.println("Check-in date is before check-out date");
             return;

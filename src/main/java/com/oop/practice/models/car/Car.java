@@ -2,8 +2,9 @@ package com.oop.practice.models.car;
 
 import com.oop.practice.utils.ValidationUtil;
 
-import static com.oop.practice.constants.CarConstants.MAKE;
-import static com.oop.practice.constants.CarConstants.MODEL;
+import java.time.Year;
+
+import static com.oop.practice.constants.CarConstants.*;
 
 /**
  * Represents a car with basic functionality like starting/stopping the engine,
@@ -19,6 +20,7 @@ public class Car {
     public Car(String make, String model, int year) {
         ValidationUtil.validateStringAndThrow(make, MAKE);
         ValidationUtil.validateStringAndThrow(model, MODEL);
+        ValidationUtil.validateRangeIntAndThrow(year,YEAR,1865, Year.now().getValue());
         this.make = make;
         this.model = model;
         this.year = year;

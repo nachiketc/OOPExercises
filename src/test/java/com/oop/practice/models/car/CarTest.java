@@ -2,6 +2,8 @@ package com.oop.practice.models.car;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTest {
@@ -63,5 +65,28 @@ public class CarTest {
         testCar.accelerate(20);
         testCar.brake(30);
         assertEquals(0, testCar.getCurrentSpeed(), "Speed should not go below 0");
+    }
+
+    @Test
+    void testCarCreationWithValidYear() {
+        assertDoesNotThrow(() -> new Car("Toyota", "Camry", 2023));
+        assertDoesNotThrow(() -> new Car("Toyota", "Camry", 1865));
+        assertDoesNotThrow(() -> new Car("Toyota", "Camry", 2024));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1864, 1000, -1, 0})
+    void testCarCreationWithYearBefore1865_ShouldThrowException(int year) {
+        Exception exception = assertThrows(IllegalArgumentException.class,
+            () -> new Car("Toyota", "Camry", year));
+        assertTrue(exception.getMessage().contains("cannot be less than 1865"));
+    }
+
+    @Test
+    void testCarCreationWithFutureYear_ShouldThrowException() {
+        int futureYear = java.time.Year.now().getValue() + 1;
+        Exception exception = assertThrows(IllegalArgumentException.class,
+            () -> new Car("Toyota", "Camry", futureYear));
+        assertTrue(exception.getMessage().contains("cannot be greater than"));
     }
 }

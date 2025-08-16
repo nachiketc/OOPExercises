@@ -30,7 +30,7 @@ public class BookTest {
     @Test
     void testCheckOutBook() {
         book.checkOutBook(today, tomorrow);
-        assertFalse(book.isAvailable());
+        assertFalse(book.isAvailable(), "Book should be checked out and not available");
     }
 
     @Test
@@ -67,5 +67,46 @@ public class BookTest {
         assertThrows(IllegalArgumentException.class, () -> new Book("Title", null, "123"));
         assertThrows(IllegalArgumentException.class, () -> new Book("Title", "Author", null));
         assertThrows(IllegalArgumentException.class, () -> new Book("", "Author", "123"));
+    }
+
+    @Test
+    void testCheckOutBook_WithNullDates_ShouldThrowException() {
+        assertThrows(IllegalArgumentException.class, 
+            () -> book.checkOutBook(null, tomorrow), 
+            "Should throw when checkOut date is null");
+            
+        assertThrows(IllegalArgumentException.class, 
+            () -> book.checkOutBook(today, null), 
+            "Should throw when checkIn date is null");
+    }
+
+    @Test
+    void testCheckOutBook_WithInvalidDateRange_ShouldNotCheckOut() {
+        // Check-in date before check-out date
+        book.checkOutBook(tomorrow, today);
+        assertTrue(book.isAvailable(), "Book should remain available with invalid date range");
+    }
+
+    @Test
+    void testCheckLateFees_WithNullDate_ShouldThrowException() {
+        assertThrows(IllegalArgumentException.class, 
+            () -> book.checkLateFees(null), 
+            "Should throw when checkIn date is null");
+    }
+
+    @Test
+    void testCheckLateFees_WhenNotCheckedOut_ShouldNotCalculateFees() {
+        // Check late fees on a book that was never checked out
+        book.checkLateFees(tomorrow);
+        assertEquals(0, book.getLateFees(), "Should be 0 when book was never checked out");
+        assertFalse(book.isLate(), "Should not be marked as late when never checked out");
+    }
+
+    @Test
+    void testCheckLateFees_WhenReturnedOnTime_ShouldNotCalculateFees() {
+        book.checkOutBook(today, tomorrow);
+        book.checkLateFees(tomorrow); // Return on due date
+        assertEquals(0, book.getLateFees(), "Should be 0 when returned on time");
+        assertFalse(book.isLate(), "Should not be marked as late when returned on time");
     }
 }

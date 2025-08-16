@@ -1,6 +1,10 @@
 package com.oop.practice.models.student;
 
+import com.oop.practice.utils.ValidationUtil;
+
 import java.util.*;
+
+import static com.oop.practice.constants.StudentConstants.*;
 
 /**
  * Represents a student with subjects and grades.
@@ -15,6 +19,9 @@ public class Student {
     private double gpa;
 
     public Student(String name, String Id, int age) {
+        ValidationUtil.validateStringAndThrow(name,NAME);
+        ValidationUtil.validateStringAndThrow(Id,ID);
+        ValidationUtil.validatePositiveInt(age,AGE);
         this.name = name;
         this.Id = Id;
         this.age = age;
