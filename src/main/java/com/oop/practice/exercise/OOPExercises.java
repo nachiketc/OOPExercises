@@ -4,6 +4,7 @@ import com.oop.practice.demo.bank.BankDemo;
 import com.oop.practice.demo.car.CarDemo;
 import com.oop.practice.demo.library.LibraryDemo;
 import com.oop.practice.demo.student.StudentDemo;
+import com.oop.practice.demo.user.UserDemo;
 
 import java.util.Scanner;
 
@@ -28,8 +29,9 @@ public class OOPExercises {
             System.out.println("2. Car Demo");
             System.out.println("3. Library Management Demo");
             System.out.println("4. Student Management Demo");
+            System.out.println("5. User Authentication Demo");
             System.out.println("0. Exit");
-            System.out.print("\nSelect an option (0-4): ");
+            System.out.print("\nSelect an option (0-5): ");
             
             try {
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -46,6 +48,9 @@ public class OOPExercises {
                         break;
                     case 4:
                         runStudentDemo();
+                        break;
+                    case 5:
+                        runUserAuthDemo();
                         break;
                     case 0:
                         exit = true;
@@ -90,7 +95,15 @@ public class OOPExercises {
      * Runs the Student Management demo.
      */
     private static void runStudentDemo() {
-        System.out.println("\n[4/4] Running Student Management Demo...");
+        System.out.println("\n=== Running Student Management Demo ===\n");
         StudentDemo.run();
+    }
+    
+    /**
+     * Runs the User Authentication demo.
+     */
+    private static void runUserAuthDemo() {
+        System.out.println("\n=== Running User Authentication Demo ===\n");
+        UserDemo.run();
     }
 }

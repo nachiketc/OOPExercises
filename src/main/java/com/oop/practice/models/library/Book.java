@@ -70,7 +70,7 @@ public class Book {
     }
 
     public void checkOutBook(Date checkOut, Date checkIn) {
-        ValidationUtil.validateNonNullAndThrow(checkOut, CHEKCK_OUT_DATE);
+        ValidationUtil.validateNonNullAndThrow(checkOut, CHECK_OUT_DATE);
         ValidationUtil.validateNonNullAndThrow(checkIn, CHECK_IN_DATE);
         if (checkIn.before(checkOut)) {
             System.out.println("Check in date cannot be before checkout");
