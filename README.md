@@ -57,7 +57,7 @@ Create a `User` class that:
 Design a `Thermostat` class that:
 - Encapsulates temperature settings
 - Validates temperature ranges
-- Implements auto-shutoff safety
+- Implements auto-shutoff safety (skipping)
 - Provides controlled access to settings
 - Logs temperature changes
 
