@@ -6,6 +6,7 @@ import com.oop.practice.demo.library.LibraryDemo;
 import com.oop.practice.demo.student.StudentDemo;
 import com.oop.practice.demo.thermostat.ThermostatDemo;
 import com.oop.practice.demo.user.UserDemo;
+import com.oop.practice.demo.vehicle.VehicleDemo;
 
 import java.util.Scanner;
 
@@ -32,8 +33,9 @@ public class OOPExercises {
             System.out.println("4. Student Management Demo");
             System.out.println("5. User Authentication Demo");
             System.out.println("6. Thermostat Demo");
+            System.out.println("7. Vehicle Hierarchy Demo");
             System.out.println("0. Exit");
-            System.out.print("\nSelect an option (0-6): ");
+            System.out.print("\nSelect an option (0-7): ");
             
             try {
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -57,6 +59,9 @@ public class OOPExercises {
                     case 6:
                         runThermostatDemo();
                         break;
+                    case 7:
+                        runVehicleDemo();
+                        break;
                     case 0:
                         exit = true;
                         break;
@@ -76,7 +81,7 @@ public class OOPExercises {
      * Runs the Bank Account demo.
      */
     private static void runBankAccountDemo() {
-        System.out.println("\n[1/6] Running Bank Account Demo...");
+        System.out.println("\n[1/7] Running Bank Account Demo...");
         BankDemo.run();
     }
     
@@ -84,7 +89,7 @@ public class OOPExercises {
      * Runs the Car demo.
      */
     private static void runCarDemo() {
-        System.out.println("\n[2/6] Running Car Demo...");
+        System.out.println("\n[2/7] Running Car Demo...");
         CarDemo.run();
     }
     
@@ -92,7 +97,7 @@ public class OOPExercises {
      * Runs the Library Management System demo.
      */
     private static void runLibraryDemo() {
-        System.out.println("\n[3/6] Running Library Management System Demo...");
+        System.out.println("\n[3/7] Running Library Management System Demo...");
         LibraryDemo.run();
     }
     
@@ -100,7 +105,7 @@ public class OOPExercises {
      * Runs the Student Management demo.
      */
     private static void runStudentDemo() {
-        System.out.println("\n[4/6] Running Student Management Demo...");
+        System.out.println("\n[4/7] Running Student Management Demo...");
         StudentDemo.run();
     }
     
@@ -108,7 +113,7 @@ public class OOPExercises {
      * Runs the User Authentication demo.
      */
     private static void runUserAuthDemo() {
-        System.out.println("\n[5/6] Running User Authentication Demo...");
+        System.out.println("\n[5/7] Running User Authentication Demo...");
         UserDemo.run();
     }
 
@@ -116,7 +121,15 @@ public class OOPExercises {
      * Runs the Thermostat demo.
      */
     private static void runThermostatDemo() {
-        System.out.println("\n[6/6] Running Thermostat Demo...");
+        System.out.println("\n[6/7] Running Thermostat Demo...");
         new ThermostatDemo().start();
+    }
+    
+    /**
+     * Runs the Vehicle Hierarchy demo.
+     */
+    private static void runVehicleDemo() {
+        System.out.println("\n[7/7] Running Vehicle Hierarchy Demo...");
+        VehicleDemo.main(new String[]{});
     }
 }
